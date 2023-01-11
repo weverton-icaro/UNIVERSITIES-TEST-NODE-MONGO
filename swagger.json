@@ -1,0 +1,273 @@
+{
+  "openapi": "3.0.n",
+  "info": {
+    "title": "University-test Documentation",
+    "description": "This is a test API, developed for addition and consultation of universities in some countries.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "weverton.dev@gmail.com",
+      "messeger": "https://api.whatsapp.com/send?phone=5561994087588"
+    }
+  },
+  "paths": {
+    "/universities": {
+      "post": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "Create a university.",
+        "description": "Create a new university.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "alpha_two_code": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "web_pages": {
+                    "type": "array"
+                  },
+                  "state-province": {
+                    "type": "string"
+                  },
+                  "domains": {
+                    "type": "array"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "alpha_two_code": "BR",
+                  "name": "Universidade 123",
+                  "web_pages": [
+                      "http://www.123.br/"
+                  ],
+                  "state-province": "Ceilândia",
+                  "domains": [
+                      "123.br"
+                  ],
+                  "country": "Brazil"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "List all universities",
+        "description": "List all universities",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "University name.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "path",
+            "description": "Country to search.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "path",
+            "description": "Page number to display.",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "nome": {
+                        "type": "string"
+                      },
+                      "pais": {
+                        "type": "string"
+                      },
+                      "estado": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/universities/{id}": {
+      "get": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "Show university",
+        "description": "Show university",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "University id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "nome": {
+                        "type": "string"
+                      },
+                      "pais": {
+                        "type": "string"
+                      },
+                      "estado": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "Update university",
+        "description": "Update university",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "University id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "web_pages": {
+                    "type": "array"
+                  },
+                  "domains": {
+                    "type": "array"
+                  }
+                },
+                "example": {
+                  "name": "Universidade 123",
+                  "web_pages": [
+                      "http://www.123.br/"
+                  ],
+                  "domains": [
+                      "123.br"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Updated successfully!"
+          },
+          "404": {
+            "description": "University not found!"
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "Delete university",
+        "description": "Delete university",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "University id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted."
+          },
+          "404": {
+            "description": "University not found!"
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    }
+  }
+}

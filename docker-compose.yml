@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mongo-db:
+    image: mongo:4.2
+    container_name: mongo-db
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: universities
+    volumes:
+      - mongodb:/data/db
+  app:
+    build: .
+    container_name: university-test
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/usr/app
+    working_dir: /usr/app
+    command: yarn start
+    logging:
+        driver: 'json-file'
+        options:
+          max-size: '10m'
+          max-file: '5'
+    links:
+      - mongo-db
+    depends_on:
+      - mongo-db
+
+volumes:
+  mongodb:

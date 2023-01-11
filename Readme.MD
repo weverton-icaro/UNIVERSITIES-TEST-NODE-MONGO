@@ -15,7 +15,7 @@
 
 ### clone o projeto
 
-- https://github.com/weverton-icaro/university-test.git
+- https://github.com/weverton-icaro/UNIVERSITIES-TEST-NODE-MONGO.git
 
 ### instale as dependências
 
